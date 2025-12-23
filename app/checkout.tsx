@@ -1,10 +1,10 @@
 import WrapperList from "@/components/ui/wrapper-list";
 import { Text } from "react-native";
 
-export default function Home() {
+export default function CheckoutPage() {
   return (
     <WrapperList>
-      <Text>MAIN PAGE</Text>
+      <Text>CHECKOUT</Text>
     </WrapperList>
   );
 }
