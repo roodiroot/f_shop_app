@@ -3,7 +3,7 @@ import FavoriteSvg from "@/components/ui/icons/favorites";
 import HomeSvg from "@/components/ui/icons/home";
 import ProfileSvg from "@/components/ui/icons/profile";
 import SquaresSvg from "@/components/ui/icons/squares";
-import { Tabs } from "expo-router";
+import { router, Tabs } from "expo-router";
 
 export default function TabsLayout() {
   return (
@@ -71,6 +71,12 @@ export default function TabsLayout() {
 
       <Tabs.Screen
         name="profile"
+        listeners={{
+          tabPress: (e) => {
+            e.preventDefault();
+            router.replace("/(tabs)/profile/(auth)/login");
+          },
+        }}
         options={{
           title: "Профиль",
           tabBarIcon: ({ color }) => (

@@ -13,13 +13,6 @@ export default function ModalLayout() {
         }}
       />
       <Stack.Screen
-        name="order/[documentId]"
-        options={{
-          headerShown: false,
-          title: "Заказ",
-        }}
-      />
-      <Stack.Screen
         name="sort"
         options={{
           title: "Сортировка",

@@ -3,9 +3,6 @@ import { useCart } from "@/hooks/use-cart";
 import { orderFormSchema } from "@/schemas/order";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as Haptics from "expo-haptics";
-import * as Linking from "expo-linking";
-import { router } from "expo-router";
-import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Text, View } from "react-native";
 
@@ -17,13 +14,12 @@ import InputGroup from "../ui/input/input-group";
 import InputPhoneGroup from "../ui/input/input-phone-group";
 
 const OrderCreateForm = () => {
-  const [infoMessage, setInfoMessage] = useState({
-    message: "",
-  });
   const { items, clearCart } = useCart();
-  const { mutateAsync } = useCreateOrder();
+  const { mutate, isPending, isError, error } = useCreateOrder();
 
-  const { control, handleSubmit } = useForm<z.infer<typeof orderFormSchema>>({
+  const { control, handleSubmit, reset } = useForm<
+    z.infer<typeof orderFormSchema>
+  >({
     resolver: zodResolver(orderFormSchema),
     defaultValues: {
       name: "",
@@ -37,10 +33,7 @@ const OrderCreateForm = () => {
   const onSubmit = async (values: z.infer<typeof orderFormSchema>) => {
     if (items.map((i) => i.stock <= 0 || !i.stock)[0]) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-      return setInfoMessage({
-        message:
-          "Часть товаров в вашем заказе закончились. Удалите их и попробуйте еще раз.",
-      });
+      return;
     }
 
     const payload = {
@@ -59,21 +52,9 @@ const OrderCreateForm = () => {
       }),
     };
 
-    const res = await mutateAsync(payload);
-
-    if (res.error) {
-      return setInfoMessage({ message: res.error });
-    }
-    const url = res.data?.confirmationUrl || "https://kondish.su/";
-    const canOpen = await Linking.canOpenURL(url);
-    if (canOpen) {
-      await Linking.openURL(url);
-    } else {
-      console.warn("Не удалось открыть ссылку");
-    }
-    setInfoMessage({ message: "Сейчас вас перенаправит на страницу оплаты." });
+    mutate(payload);
+    reset();
     clearCart();
-    router.push(`/(tabs)/profile/order/${res.data?.orderId}`);
   };
 
   return (
@@ -159,11 +140,14 @@ const OrderCreateForm = () => {
 
         <View className="gap-6 relative">
           <View className="relative">
-            <Button onPress={handleSubmit(onSubmit)}>Продолжить</Button>
-            {infoMessage.message ? (
+            <Button disabled={isPending} onPress={handleSubmit(onSubmit)}>
+              {isPending ? "Открываем оплату..." : "Продолжить"}
+            </Button>
+
+            {isError ? (
               <View className="absolute -bottom-5 left-0 ">
                 <Text className="text-sm text-red-500">
-                  {infoMessage.message}
+                  {(error as Error).message}
                 </Text>
               </View>
             ) : null}

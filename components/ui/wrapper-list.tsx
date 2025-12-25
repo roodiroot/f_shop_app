@@ -22,7 +22,7 @@ export default function WrapperList({
       {headerSown ? <Header title={headerTitle} /> : null}
       <ScrollView
         keyboardShouldPersistTaps="handled"
-        contentContainerClassName="px-4 flex-1 bg-inherit"
+        contentContainerClassName="px-4"
         refreshControl={refreshControl as any}
       >
         {children}
