@@ -8,6 +8,7 @@ import { useImageSource } from "@/hooks/useImageSource";
 import { getPriceFormat } from "@/utils/get-price-format";
 import ChangeQuantityCounter from "./change-quantity-counter";
 
+import ColorIcon from "@/components/layout/color-icon";
 import { ProductImage } from "@/types/products";
 
 type CartItemProps = {
@@ -64,16 +65,7 @@ export default function CartItem({
             </Text>
           </View>
           <View className="flex-row items-end mt-2">
-            <View
-              className={cn(
-                "bg-white size-8 justify-center items-center rounded-full border border-gray-300"
-              )}
-            >
-              <View
-                className="rounded-full size-6 opacity-40"
-                style={{ backgroundColor: color }}
-              />
-            </View>
+            <ColorIcon color={color || ""} />
             <Text className="mt-1 ml-3 text-base text-gray-500">
               Размер: {size}
             </Text>

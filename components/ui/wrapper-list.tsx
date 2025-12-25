@@ -8,10 +8,12 @@ type WrapperListProps = PropsWithChildren & {
   headerSown?: boolean;
   headerTitle?: string;
   className?: string;
+  refreshControl?: React.ReactNode;
 };
 export default function WrapperList({
   headerSown,
   headerTitle,
+  refreshControl,
   className,
   children,
 }: WrapperListProps) {
@@ -20,7 +22,8 @@ export default function WrapperList({
       {headerSown ? <Header title={headerTitle} /> : null}
       <ScrollView
         keyboardShouldPersistTaps="handled"
-        contentContainerClassName="px-4"
+        contentContainerClassName="px-4 flex-1 bg-inherit"
+        refreshControl={refreshControl as any}
       >
         {children}
       </ScrollView>

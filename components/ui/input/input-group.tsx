@@ -7,6 +7,15 @@ type InputGroupProps = InputProps & {
   label?: string;
   className?: string;
   description?: string;
+  children?: React.ReactNode;
+  keyboardType?:
+    | "default"
+    | "number-pad"
+    | "decimal-pad"
+    | "numeric"
+    | "email-address"
+    | "phone-pad"
+    | "url";
 };
 
 export default function InputGroup({
@@ -17,6 +26,7 @@ export default function InputGroup({
   onBlur,
   placeholder,
   secureTextEntry,
+  keyboardType,
   errorText,
   className,
   ...props
@@ -29,6 +39,7 @@ export default function InputGroup({
         onChange={onChange}
         onBlur={onBlur}
         placeholder={placeholder}
+        keyboardType={keyboardType}
         secureTextEntry={secureTextEntry}
         errorText={errorText}
         {...props}

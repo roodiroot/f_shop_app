@@ -31,7 +31,7 @@ export default function SummerySection({ totalSumm, isCartNo }: Props) {
         </Button>
       ) : (
         <Button
-          onPress={() => router.push("/checkout")}
+          onPress={() => router.push("/(modals)/checkout")}
           className="mt-6"
           variant="big"
         >

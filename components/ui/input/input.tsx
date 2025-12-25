@@ -7,6 +7,14 @@ export type InputProps = {
   placeholder?: string;
   secureTextEntry?: boolean;
   errorText?: string;
+  keyboardType?:
+    | "default"
+    | "number-pad"
+    | "decimal-pad"
+    | "numeric"
+    | "email-address"
+    | "phone-pad"
+    | "url";
 };
 
 export function Input({
@@ -16,12 +24,13 @@ export function Input({
   placeholder,
   secureTextEntry,
   errorText,
+  keyboardType = "default",
   ...props
 }: InputProps) {
   return (
     <View className="w-full">
       <View
-        className={`w-full h-12 flex-row items-center rounded-lg border px-4 ${
+        className={`w-full flex-row items-center rounded-lg border px-4 ${
           errorText ? "border-red-500" : "border-gray-300"
         }`}
       >
@@ -29,8 +38,15 @@ export function Input({
           value={value ?? ""}
           onChangeText={onChange}
           onBlur={onBlur}
-          className="flex-1 text-base text-gray-900"
           placeholderTextColor="#9CA3AF"
+          keyboardType={keyboardType}
+          style={{
+            flex: 1,
+            fontSize: 16,
+            height: 42,
+            textAlignVertical: "center",
+            paddingVertical: 0,
+          }}
           {...props}
         />
       </View>

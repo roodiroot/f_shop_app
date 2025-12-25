@@ -10,10 +10,10 @@ const AuthWrapperForm: React.FC<AuthWrapperFormProps> = ({
   children,
 }) => {
   return (
-    <View className="pb-8 pt-16 flex-1">
+    <View className="pb-8 flex-1">
       <ScrollView
         keyboardShouldPersistTaps="handled"
-        contentContainerClassName="px-8 items-center gap-4"
+        contentContainerClassName="px-8 pt-10 items-center gap-4"
       >
         <Logo width={50} height={50} />
         <Text className="mt-4 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
