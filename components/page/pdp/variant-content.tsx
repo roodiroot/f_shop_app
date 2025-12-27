@@ -1,11 +1,10 @@
 import Button from "@/components/ui/button/button";
-import FavoriteSvg from "@/components/ui/icons/favorites";
+import CastomIcon from "@/components/ui/icons/castom-icon";
 import { useCart } from "@/hooks/use-cart";
 import { useFavorite } from "@/hooks/use-favorites";
 import { useProductVariantPicker } from "@/hooks/useProductVariantPicker";
 import { Product } from "@/types/products";
 import { getPriceFormat } from "@/utils/get-price-format";
-import { Feather } from "@expo/vector-icons";
 import cn from "clsx";
 import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
@@ -177,11 +176,11 @@ export default function VariantContent({
               onPress={favoriteCurent ? removeFavorite : addProductToFavorite}
               className="items-center justify-center w-[52] aspect-square"
             >
-              {favoriteCurent ? (
-                <FavoriteSvg width={24} height={24} />
-              ) : (
-                <Feather name="heart" size={24} stroke={"#000"} />
-              )}
+              <CastomIcon
+                name="heart"
+                size={24}
+                color={favoriteCurent ? "#dc2626" : "#111827"}
+              />
             </Pressable>
           </View>
         </View>

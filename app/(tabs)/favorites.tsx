@@ -19,8 +19,7 @@ import {
 } from "react-native";
 
 export default function Favorites() {
-  const PAGE_SIZE = 2;
-
+  const PAGE_SIZE = 16;
   const GAP = 12;
   const SCREEN_WIDTH = Dimensions.get("window").width;
   const ITEM_WIDTH = (SCREEN_WIDTH - GAP * 3) / 2;

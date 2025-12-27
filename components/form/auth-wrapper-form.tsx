@@ -1,5 +1,5 @@
 import { ScrollView, Text, View } from "react-native";
-import Logo from "../ui/icons/logo";
+import CastomIcon from "../ui/icons/castom-icon";
 
 interface AuthWrapperFormProps extends React.PropsWithChildren {
   title: string;
@@ -15,7 +15,7 @@ const AuthWrapperForm: React.FC<AuthWrapperFormProps> = ({
         keyboardShouldPersistTaps="handled"
         contentContainerClassName="px-8 pt-10 items-center gap-4"
       >
-        <Logo width={50} height={50} />
+        <CastomIcon size={50} name="logo" />
         <Text className="mt-4 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
           {title}
         </Text>

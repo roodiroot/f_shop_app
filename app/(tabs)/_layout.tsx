@@ -1,35 +1,54 @@
-import CartSvg from "@/components/ui/icons/cart";
-import FavoriteSvg from "@/components/ui/icons/favorites";
-import HomeSvg from "@/components/ui/icons/home";
-import ProfileSvg from "@/components/ui/icons/profile";
-import SquaresSvg from "@/components/ui/icons/squares";
-import { router, Tabs } from "expo-router";
+import { TabButton } from "@/components/general/tab-bar/tab-batton";
+import { TabButtonCart } from "@/components/general/tab-bar/tab-batton-cart";
+import { TabButtonFavorite } from "@/components/general/tab-bar/tab-batton-favorite";
+import { TabList, Tabs, TabSlot, TabTrigger } from "expo-router/ui";
 
 export default function TabsLayout() {
   return (
     <Tabs
-      screenOptions={{
-        headerShown: false,
+    // screenOptions={{
+    //   headerShown: false,
 
-        tabBarActiveTintColor: "#262626",
-        tabBarInactiveTintColor: "#6b7280",
+    //   tabBarActiveTintColor: "#262626",
+    //   tabBarInactiveTintColor: "#6b7280",
 
-        tabBarStyle: {
-          height: 88,
-          paddingTop: 10,
-          paddingBottom: 28,
-          borderTopWidth: 0,
-          elevation: 0,
-          backgroundColor: "#f3f4f6",
-        },
+    //   tabBarStyle: {
+    //     height: 88,
+    //     paddingTop: 10,
+    //     paddingBottom: 28,
+    //     borderTopWidth: 0,
+    //     elevation: 0,
+    //     backgroundColor: "#f3f4f6",
+    //   },
 
-        tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: "500",
-        },
-      }}
+    //   tabBarLabelStyle: {
+    //     fontSize: 12,
+    //     fontWeight: "500",
+    //   },
+    // }}
     >
-      <Tabs.Screen
+      <TabSlot />
+      <TabList className="h-24 bg-gray-100 border-t border-gray-200">
+        <TabTrigger name="index" href="/" asChild>
+          <TabButton icon="home" label="Главная" />
+        </TabTrigger>
+
+        <TabTrigger name="Каталог" href="/catalog/category" asChild>
+          <TabButton icon="squares" label="Каталог" />
+        </TabTrigger>
+
+        <TabTrigger name="Корзина" href="/cart" asChild>
+          <TabButtonCart />
+        </TabTrigger>
+        <TabTrigger name="Избранное" href="/favorites" asChild>
+          <TabButtonFavorite />
+        </TabTrigger>
+        <TabTrigger name="Профиль" href="/profile/login" asChild>
+          <TabButton icon="user" label="Профиль" />
+        </TabTrigger>
+      </TabList>
+
+      {/* <Tabs.Screen
         name="index"
         options={{
           title: "Главная",
@@ -83,7 +102,7 @@ export default function TabsLayout() {
             <ProfileSvg width={24} height={24} fill={color} />
           ),
         }}
-      />
+      /> */}
     </Tabs>
   );
 }

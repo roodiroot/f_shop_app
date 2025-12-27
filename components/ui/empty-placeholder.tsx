@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import Logo from "./icons/logo";
+import CastomIcon from "./icons/castom-icon";
 
 type Props = {
   title: string;
@@ -7,7 +7,7 @@ type Props = {
 };
 
 export default function EmptyPlaceholder({
-  icon = <Logo width={50} height={50} />,
+  icon = <CastomIcon name="logo" size={50} />,
   title,
 }: Props) {
   return (

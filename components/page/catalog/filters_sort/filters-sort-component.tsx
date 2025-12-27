@@ -1,4 +1,4 @@
-import FilterSvg from "@/components/ui/icons/filter";
+import CastomIcon from "@/components/ui/icons/castom-icon";
 import { SORT_TYPES, useCatalogSort } from "@/hooks/use-catalog-sort";
 import { FilterId, prepareActiveFilters } from "@/utils/prepare-filters";
 import { Feather } from "@expo/vector-icons";
@@ -68,7 +68,7 @@ export default function FilterSortComponnt({
               })
             }
           >
-            <FilterSvg width={24} height={24} fill={"#1f2937"} />
+            <CastomIcon size={24} name="filter" />
           </Pressable>
         ) : null}
       </View>

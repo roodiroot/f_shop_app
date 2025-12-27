@@ -1,7 +1,7 @@
 import cn from "clsx";
 import { useState } from "react";
 import { View } from "react-native";
-import CheckSvg from "./icons/check";
+import CastomIcon from "./icons/castom-icon";
 
 type Props = Omit<React.ComponentProps<typeof View>, "onPress"> & {
   checked?: boolean;
@@ -32,7 +32,7 @@ export default function Checked({ onCheckedChange, checked, ...props }: Props) {
     >
       {isChecked ? (
         <View className="absolute inset-0 justify-center items-center">
-          <CheckSvg stroke={"#fff"} width={16} height={16} />
+          <CastomIcon size={16} name="check" />
         </View>
       ) : null}
     </View>

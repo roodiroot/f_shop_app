@@ -5,7 +5,6 @@ import { Pressable, Text, View } from "react-native";
 
 export default function Sort() {
   const { setSortType, sortType } = useCatalogSort();
-  const checked = sortType;
 
   return (
     <WrapperList>
