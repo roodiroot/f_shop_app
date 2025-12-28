@@ -1,13 +1,19 @@
 import { ProductImage } from "@/types/products";
 
 export function getImageUrl(
-  image?: ProductImage | null,
+  image?: ProductImage | null | string,
   variant?: "small" | "medium" | "large"
 ) {
   const base = process.env.EXPO_PUBLIC_API_URL || "";
+
   if (!image) {
     return null;
   }
+
+  if (typeof image === "string") {
+    return image.startsWith("http") ? image : base + image;
+  }
+
   const formats = image?.formats;
 
   let url;

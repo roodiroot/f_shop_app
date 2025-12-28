@@ -14,6 +14,8 @@ export interface ShortProductType {
   slug: string;
   documentId: string;
   shortName: string;
+  sale?: number;
+  hit?: boolean;
   product_variants: ProductVariant[];
 }
 

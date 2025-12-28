@@ -18,6 +18,8 @@ export const GET_PRODUCTS = gql`
         subcategory
         vendor
         categoryParam
+        sale
+        hit
 
         product_variants {
           documentId

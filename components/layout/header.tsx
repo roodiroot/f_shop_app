@@ -1,34 +1,73 @@
+import { icons } from "@/components/ui/icons/icons";
 import { router } from "expo-router";
 import { PropsWithChildren } from "react";
 import { Pressable, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CastomIcon from "../ui/icons/castom-icon";
 
-type HeaderProps = PropsWithChildren & {
-  title?: string;
+export type HeaderOptions = {
+  titleElement?: React.ReactNode;
+  leftButtonIcon?: keyof typeof icons;
+  leftButtonFunc?: () => void;
+  rightButtonIcon?: keyof typeof icons;
+  rightButtonFunc?: () => void;
 };
 
-export default function Header({ title }: HeaderProps) {
+type HeaderProps = PropsWithChildren & {
+  title?: string;
+  headerOptions?: HeaderOptions;
+};
+
+export default function Header({ title, headerOptions }: HeaderProps) {
   const insets = useSafeAreaInsets();
+  const leftButtonFunction = () => {
+    if (headerOptions?.leftButtonFunc) {
+      return headerOptions.leftButtonFunc();
+    }
+    return router.back();
+  };
+  const rightButtonFunction = () => {
+    if (headerOptions?.rightButtonFunc) {
+      return headerOptions.rightButtonFunc();
+    }
+    return router.push("/(tabs)/catalog/search");
+  };
   return (
     <View
       style={{ paddingTop: insets.top }}
       className="flex-row items-center justify-between w-full px-4 pb-2 bg-white"
     >
       <Pressable
-        onPress={() => router.back()}
+        onPress={leftButtonFunction}
         className="size-14 bg-white border-gray-200 border-2 rounded-full justify-center items-center"
       >
-        <CastomIcon name="arrowBack" />
+        <CastomIcon
+          name={
+            headerOptions?.leftButtonIcon
+              ? headerOptions.leftButtonIcon
+              : "arrowBack"
+          }
+        />
       </Pressable>
-      <Text className="text-xl text-gray-900 font-medium uppercase">
-        {title}
-      </Text>
+      {headerOptions?.titleElement ? (
+        headerOptions?.titleElement
+      ) : (
+        <Text className="text-xl text-gray-900 font-medium uppercase">
+          {title}
+        </Text>
+      )}
+
       <Pressable
-        onPress={() => router.push("/(tabs)/catalog/search")}
+        onPress={rightButtonFunction}
         className="size-14 bg-white border-gray-200 border-2 rounded-full justify-center items-center"
       >
-        <CastomIcon name="search" />
+        <CastomIcon
+          name={
+            headerOptions?.rightButtonIcon
+              ? headerOptions?.rightButtonIcon
+              : "search"
+          }
+        />
       </Pressable>
     </View>
   );

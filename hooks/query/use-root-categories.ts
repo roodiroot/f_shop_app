@@ -1,5 +1,5 @@
-import { GET_CATEGORIES_ROOT } from "@/graphql/category";
-import { CategoryRootType } from "@/types/category";
+import { GET_CATEGORIES_ROOT, GET_CATEGORIES_SHORT } from "@/graphql/category";
+import { CategoryRootType, CategoryScreen } from "@/types/category";
 import { useQuery } from "@apollo/client/react";
 
 export const useRootCategories = () => {
@@ -19,6 +19,29 @@ export const useRootCategories = () => {
 
   return {
     categories: data?.categories || [],
+    loading,
+    error,
+    refetch,
+  };
+};
+export const useProductCategories = () => {
+  const { data, loading, error, refetch } = useQuery<{
+    categories: CategoryScreen[];
+  }>(GET_CATEGORIES_SHORT, {
+    variables: {
+      filters: {
+        products: {
+          documentId: {
+            notNull: true,
+          },
+        },
+      },
+    },
+    fetchPolicy: "no-cache",
+  });
+
+  return {
+    data: data?.categories || [],
     loading,
     error,
     refetch,

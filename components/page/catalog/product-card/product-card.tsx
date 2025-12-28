@@ -1,6 +1,6 @@
 // components/ProductCard.tsx
 import { useImageSource } from "@/hooks/useImageSource";
-import { ProductImage } from "@/types/products";
+import { ProductImage, ProductVariant } from "@/types/products";
 import { getPriceFormat } from "@/utils/get-price-format";
 import { router } from "expo-router";
 import { Image, Pressable, Text, View } from "react-native";
@@ -9,9 +9,7 @@ type Props = {
   slug: string;
   title: string;
   image?: ProductImage;
-  product_variants?: any[];
-
-  // product?: ProductAttributes;
+  product_variants?: ProductVariant[];
 };
 
 export function ProductCard({

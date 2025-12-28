@@ -73,3 +73,18 @@ export const GET_CATEGORIES_ROOT = gql`
     }
   }
 `;
+export const GET_CATEGORIES_SHORT = gql`
+  query Categories($filters: CategoryFiltersInput, $categorySort: [String]) {
+    categories(sort: $categorySort, filters: $filters) {
+      slug
+      name
+      documentId
+      icon {
+        url
+      }
+      image {
+        formats
+      }
+    }
+  }
+`;

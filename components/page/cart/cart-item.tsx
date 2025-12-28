@@ -1,4 +1,3 @@
-import { Feather } from "@expo/vector-icons";
 import cn from "clsx";
 import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
@@ -9,6 +8,7 @@ import { getPriceFormat } from "@/utils/get-price-format";
 import ChangeQuantityCounter from "./change-quantity-counter";
 
 import ColorIcon from "@/components/layout/color-icon";
+import CastomIcon from "@/components/ui/icons/castom-icon";
 import { ProductImage } from "@/types/products";
 
 type CartItemProps = {
@@ -72,7 +72,7 @@ export default function CartItem({
           </View>
         </View>
 
-        <View className="flex-1 flex-row items-end justify-between">
+        <View className="flex-1 flex-row items-end justify-between ">
           <View>
             <ChangeQuantityCounter
               variantId={variantId}
@@ -89,7 +89,7 @@ export default function CartItem({
               );
             }}
           >
-            <Feather name="trash-2" color={"#6b7280"} size={20} />
+            <CastomIcon name="delete" color="#9ca3af" size={20} />
           </Pressable>
         </View>
       </View>

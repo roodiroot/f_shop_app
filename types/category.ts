@@ -1,9 +1,17 @@
-import { ShortProductType } from "./products";
+import { ProductImageFormats, ShortProductType } from "./products";
 
-export type CategoryRootType = {
+export type CategoryBase = {
   slug: string;
   name: string;
   documentId: string;
+};
+
+export type CategoryScreen = CategoryBase & {
+  icon: Pick<ProductImageFormats, "url">;
+  image: ProductImageFormats;
+};
+
+export type CategoryRootType = CategoryBase & {
   products: ShortProductType[] | [];
   children: {
     slug: string;
