@@ -22,7 +22,10 @@ export const TabButtonCart = React.forwardRef<View, TabTriggerSlotProps>(
               </Text>
             </View>
           ) : null}
-          <View className={cn("p-4 rounded-2xl", isFocused && "bg-white")}>
+          <View
+            style={{ borderRadius: 16 }}
+            className={cn("p-4", isFocused && "bg-white")}
+          >
             <CastomIcon name="cart" color="#111827" />
           </View>
         </View>

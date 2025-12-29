@@ -45,6 +45,9 @@ export const GET_CATEGORIES_ROOT = gql`
       slug
       name
       documentId
+      image {
+        formats
+      }
       products(sort: $productSort, pagination: { limit: 4 }) {
         slug
         documentId
@@ -54,6 +57,9 @@ export const GET_CATEGORIES_ROOT = gql`
         slug
         name
         documentId
+        icon {
+          url
+        }
         products(pagination: { limit: 1 }) {
           slug
           documentId

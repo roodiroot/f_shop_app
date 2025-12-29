@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
-type Variant = {
+export type Variant = {
   documentId: string;
   colorHex?: string | null;
   size?: string | null;

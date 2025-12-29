@@ -1,84 +1,51 @@
-// app/(tabs)/index.tsx
-import WrapperList from "@/components/ui/wrapper-list";
+import Header from "@/components/layout/header";
+import ReturnError from "@/components/layout/return-error";
+import BlockCatalog from "@/components/page/categories/block-catalog";
+import SceletonCategory from "@/components/page/categories/sceleton";
 import { useRootCategories } from "@/hooks/query/use-root-categories";
-import { router } from "expo-router";
-import { Pressable, Text, View } from "react-native";
+import { useState } from "react";
+import { FlatList, View } from "react-native";
 
 export default function CategoriesPage() {
+  const [refreshing, setRefreshing] = useState(false);
   const { categories, loading, error, refetch } = useRootCategories();
 
-  return (
-    <WrapperList headerSown headerTitle="Каталог">
-      <View className="py-4">
-        {categories.map((category) => (
-          <View
-            key={category.documentId}
-            className="mb-4 border-b pb-4 border-gray-200"
-          >
-            <Pressable
-              onPress={() =>
-                router.push(`/(tabs)/catalog/category/${category.slug}`)
-              }
-              className=""
-            >
-              <Text className="text-lg">{category.name}</Text>
-            </Pressable>
-            {category.children && category.children.length > 0 && (
-              <View className="pl-4 mt-2 gap-2">
-                {category.children.map((child) => (
-                  <Pressable
-                    key={child.documentId}
-                    className="bg-gray-100 rounded-xl px-4"
-                    onPress={() =>
-                      router.push(
-                        `/(tabs)/catalog/category/${category.slug}/${child.slug}`
-                      )
-                    }
-                  >
-                    <Text className="text-base py-3 font-medium">
-                      {child.name}
-                    </Text>
-                  </Pressable>
-                ))}
-              </View>
-            )}
-          </View>
-        ))}
-        {categories.map((category) => (
-          <View
-            key={category.documentId}
-            className="mb-4 border-b pb-4 border-gray-200"
-          >
-            <Pressable
-              onPress={() =>
-                router.push(`/(tabs)/catalog/category/${category.slug}`)
-              }
-              className=""
-            >
-              <Text className="text-lg">{category.name}</Text>
-            </Pressable>
-            {category.children && category.children.length > 0 && (
-              <View className="pl-4 mt-2 gap-2">
-                {category.children.map((child) => (
-                  <Pressable
-                    key={child.documentId}
-                    className="bg-gray-100 rounded-xl px-4"
-                    onPress={() =>
-                      router.push(
-                        `/(tabs)/catalog/category/${category.slug}/${child.slug}`
-                      )
-                    }
-                  >
-                    <Text className="text-base py-3 font-medium">
-                      {child.name}
-                    </Text>
-                  </Pressable>
-                ))}
-              </View>
-            )}
-          </View>
-        ))}
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
+
+  if (error) {
+    return <ReturnError />;
+  }
+
+  if (loading) {
+    return (
+      <View className="bg-white flex-1">
+        <Header title="Каталог" />
+        <SceletonCategory />
       </View>
-    </WrapperList>
+    );
+  }
+
+  return (
+    <View className="bg-white flex-1">
+      <Header title="Каталог" />
+      <FlatList
+        data={categories}
+        contentContainerClassName="mt-4 px-4 gap-8 pb-10"
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+        keyExtractor={(i) => i.documentId.toString()}
+        renderItem={({ item }) => (
+          <BlockCatalog
+            key={item.documentId}
+            slug={item.slug}
+            categories={item}
+          />
+        )}
+      ></FlatList>
+    </View>
   );
 }

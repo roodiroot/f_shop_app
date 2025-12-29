@@ -1,14 +1,18 @@
-import { ProductImageFormats, ShortProductType } from "./products";
+import {
+  ProductImage,
+  ProductImageFormats,
+  ShortProductType,
+} from "./products";
 
 export type CategoryBase = {
   slug: string;
   name: string;
   documentId: string;
+  image: ProductImage;
 };
 
 export type CategoryScreen = CategoryBase & {
   icon: Pick<ProductImageFormats, "url">;
-  image: ProductImageFormats;
 };
 
 export type CategoryRootType = CategoryBase & {
@@ -17,6 +21,7 @@ export type CategoryRootType = CategoryBase & {
     slug: string;
     name: string;
     documentId: string;
+    icon: Pick<ProductImageFormats, "url">;
     products: ShortProductType[] | [];
   }[];
 };

@@ -12,7 +12,10 @@ export const TabButton = React.forwardRef<
   return (
     <Pressable className="flex-1 py-2" ref={ref} {...props}>
       <View className={"flex-1 shrink items-center justify-center relative"}>
-        <View className={cn("p-4 rounded-2xl", isFocused && "bg-white")}>
+        <View
+          style={{ borderRadius: 16 }}
+          className={cn("p-4", isFocused && "bg-white")}
+        >
           <CastomIcon name={icon} color="#111827" />
         </View>
       </View>

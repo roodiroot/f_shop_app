@@ -1,63 +1,64 @@
 import { useAuth } from "@/auth/auth-context";
-import Label from "@/components/ui/input/label";
+import ItemMenuLink from "@/components/page/profile/hero/item-menu-link";
+import CastomIcon from "@/components/ui/icons/castom-icon";
+import { icons } from "@/components/ui/icons/icons";
 import WrapperList from "@/components/ui/wrapper-list";
-import { shadowSoft } from "@/theme/colors";
-import { router } from "expo-router";
+import { Href } from "expo-router";
 import { Pressable, Text, View } from "react-native";
+
+type ProfileMenuType = {
+  title: string;
+  icon: keyof typeof icons;
+  link?: Href;
+}[];
+
+const profileMenu: ProfileMenuType = [
+  { title: "Профиль", icon: "editProfile" },
+  {
+    title: "История заказов",
+    icon: "orderHistory",
+    link: "/(tabs)/profile/(protected)/order-history",
+  },
+  { title: "Гайд по размерам", icon: "dress" },
+  { title: "О магазине", icon: "about" },
+  { title: "Доставка и оплата", icon: "delivery" },
+  { title: "Контакты", icon: "contacts" },
+  { title: "Поддержка", icon: "support" },
+  { title: "Политика конфиденциальности", icon: "policy" },
+  { title: "Публичная оферта", icon: "policy" },
+];
 
 export default function ProfilePage() {
   const { auth, logout, refreshMe } = useAuth();
   return (
-    <>
-      <WrapperList className="bg-grey-50" headerSown headerTitle="Профиль">
-        <View className="flex-1 gap-4">
-          <View
-            style={shadowSoft}
-            className="mt-6 gap-6 bg-white px-4 py-6 rounded-2xl"
-          >
-            <View>
-              <Label>Имя пользователя</Label>
-              <Text className="text-lg font-medium mt-2">
-                {auth.user?.username}
-              </Text>
-            </View>
-            <View>
-              <Label>Email</Label>
-              <Text className="text-lg font-medium  mt-2">
-                {auth.user?.email}
-              </Text>
-            </View>
-            <View>
-              <Label>Дата регистрации</Label>
-              <Text className="text-lg font-medium mt-2">
-                {new Date(auth.user?.createdAt || 0).toLocaleDateString(
-                  "ru-RU",
-                  {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  }
-                )}
-              </Text>
-            </View>
-          </View>
-          <View style={shadowSoft} className="gap-6 bg-white p-4 rounded-2xl">
-            <Pressable
-              onPress={() =>
-                router.push("/(tabs)/profile/(protected)/order-history")
-              }
-            >
-              <Text className="text-lg font-medium">История заказов</Text>
-            </Pressable>
-          </View>
+    <WrapperList>
+      <View className="mt-[100] justify-center items-center">
+        <CastomIcon name="logo" size={60} />
 
-          <View className="p-4 justify-end bg-white flex-1">
-            <Pressable className="" onPress={() => logout()}>
-              <Text className="text-center underline">Выйти</Text>
-            </Pressable>
-          </View>
+        <View className="w-full mt-4 gap-2 items-center pb-6 border-b border-gray-200">
+          <Text className="text-gray-900 font-bold text-2xl">
+            {auth.user?.username}
+          </Text>
+          <Text className="font-medium text-lg">{auth.user?.email}</Text>
         </View>
-      </WrapperList>
-    </>
+        <View className="pt-6 gap-3 flex-1">
+          {profileMenu.map((i) => (
+            <ItemMenuLink
+              key={i.title}
+              title={i.title}
+              icon={i.icon}
+              link={i.link}
+            />
+          ))}
+          <Pressable
+            onPress={logout}
+            className="w-full px-4  py-2 flex-row gap-2.5 items-center justify-start"
+          >
+            <CastomIcon name="logout" color="#dc2626" />
+            <Text className="text-lg text-red-600">Выйти</Text>
+          </Pressable>
+        </View>
+      </View>
+    </WrapperList>
   );
 }

@@ -40,6 +40,11 @@ export default function Home() {
     sort: ["updatedAt:desc"],
     pagination: { page: 1, pageSize: PAGE_SIZE_HITS },
   };
+  const newProdFilterArg = {
+    sort: ["createdAt:desc"],
+    pagination: { page: 1, pageSize: PAGE_SIZE_HITS },
+  };
+
   const {
     productsList,
     pageInfo,
@@ -47,6 +52,14 @@ export default function Home() {
     error: errorProducts,
     refetch: refetchProducts,
   } = useProduct({ ...prodFilterArg });
+
+  const {
+    productsList: newProductsList,
+    pageInfo: newPageInfo,
+    loading: newLoadingProducts,
+    error: newErrorProducts,
+    refetch: newRefetchProducts,
+  } = useProduct({ ...newProdFilterArg });
 
   const {
     data: categories,
@@ -69,6 +82,13 @@ export default function Home() {
       data: productsList,
       loading: loadingProducts,
       error: errorProducts,
+    },
+    {
+      type: "products",
+      title: "Новинки",
+      data: newProductsList,
+      loading: newLoadingProducts,
+      error: newErrorProducts,
     },
   ];
 
@@ -119,6 +139,7 @@ export default function Home() {
           }
         }}
         showsVerticalScrollIndicator={false}
+        contentContainerClassName="pb-[150]"
       />
     </View>
   );

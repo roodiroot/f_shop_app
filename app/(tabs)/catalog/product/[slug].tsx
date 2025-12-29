@@ -1,30 +1,71 @@
+import Header from "@/components/layout/header";
+import ReturnError from "@/components/layout/return-error";
 import ProductBody from "@/components/page/pdp/product-body";
 import WrapperList from "@/components/ui/wrapper-list";
 import { useProductBySlug } from "@/hooks/query/use-product-by-slug";
 import { useLocalSearchParams } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { RefreshControl, StyleSheet, View } from "react-native";
 import Markdown from "react-native-markdown-display";
+
+const fish = `
+Эта модель создана для тех, кто ценит простоту, качество и внимание к деталям. Лаконичный силуэт и выверенные пропорции делают изделие универсальной основой современного гардероба — вне времени и быстрых трендов.
+
+Ткань приятна на ощупь и комфортна в носке. Материал хорошо держит форму, дышит и сохраняет аккуратный внешний вид даже при активном использовании в течение дня.
+
+## Особенности
+- Ручной крой и пошив
+- Качественная ткань с мягкой текстурой
+- Предварительная обработка для сохранения формы
+- Комфортный состав из натуральных волокон
+
+## Детали
+Модель легко сочетается с базовыми элементами гардероба и подходит для повседневных образов. Продуманная посадка обеспечивает свободу движений и комфорт на протяжении всего дня.
+`;
 
 export default function ProductPage() {
   const { slug } = useLocalSearchParams<{ slug: string }>();
-  const { product, loading, error } = useProductBySlug({ slug });
+  const [refreshing, setRefreshing] = useState(false);
+  const { product, loading, error, refetch } = useProductBySlug({ slug });
 
-  if (loading || error || !product?.shortName) {
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch({ slug });
+    setRefreshing(false);
+  };
+
+  if (error) {
+    return <ReturnError />;
+  }
+
+  if (loading || !product?.shortName) {
     return (
-      <WrapperList headerSown>
-        <View className="flex-1 items-center justify-center">
-          <Text>LOADING PRODUCT...</Text>
-        </View>
-      </WrapperList>
+      <View>
+        <Header />
+        <View
+          style={{ aspectRatio: 4 / 5 }}
+          className="bg-gray-200 animate-pulse"
+        ></View>
+        <View className="mt-8 h-8 bg-gray-200 rounded-lg max-w-28" />
+        <View className="mt-3.5  h-8 bg-gray-200 rounded-lg max-w-24" />
+      </View>
     );
   }
 
   return (
-    <WrapperList headerSown headerTitle={product?.shortName}>
+    <WrapperList
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+      headerSown
+      headerTitle={product?.shortName}
+    >
       <ProductBody product={product} />
-      <View className="mt-10 text-gray-700">
+      <View className="mt-10">
         <Markdown style={mdStyles}>
-          {product?.description?.replace(/<br\s*\/?>/gi, "\n")}
+          {/* {product?.description?.replace(/<br\s*\/?>/gi, "\n")}
+           */}
+          {fish}
         </Markdown>
       </View>
     </WrapperList>
@@ -32,37 +73,62 @@ export default function ProductPage() {
 }
 
 const mdStyles = StyleSheet.create({
-  body: { color: "#374151", fontSize: 16, lineHeight: 22 },
-  heading1: { fontSize: 24, fontWeight: "700", marginBottom: 8 },
-  heading2: { fontSize: 20, fontWeight: "700", marginBottom: 8 },
-  paragraph: { marginTop: 0, marginBottom: 10 },
-  strong: { fontWeight: "700" },
-  em: { fontStyle: "italic" },
-
-  link: { color: "#2563eb" },
-
-  bullet_list: { marginBottom: 10 },
-  list_item: { flexDirection: "row" },
-  bullet_list_icon: { marginRight: 8 },
-  bullet_list_content: { flex: 1 },
-
-  code_inline: {
-    fontFamily: "Menlo",
-    backgroundColor: "#F3F4F6",
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 6,
+  body: {
+    fontSize: 16,
+    lineHeight: 24,
   },
-  code_block: {
-    fontFamily: "Menlo",
-    backgroundColor: "#0B1220",
-    padding: 12,
-    borderRadius: 12,
+
+  paragraph: {
+    marginTop: 0,
+    marginBottom: 18,
+    color: "#0F172A",
+    fontSize: 16,
+    lineHeight: 24,
   },
-  fence: {
-    fontFamily: "Menlo",
-    backgroundColor: "#0B1220",
-    padding: 12,
-    borderRadius: 12,
+
+  heading2: {
+    fontSize: 16,
+    lineHeight: 20,
+    fontWeight: "500",
+    color: "#374151",
+    marginTop: 10,
+    marginBottom: 10,
+    letterSpacing: 0.2,
+  },
+  heading3: {
+    fontSize: 16,
+    lineHeight: 20,
+    fontWeight: "500",
+    color: "#374151",
+    marginTop: 10,
+    marginBottom: 10,
+    letterSpacing: 0.2,
+  },
+
+  bullet_list: {
+    marginTop: 0,
+    marginBottom: 18,
+    paddingLeft: 4,
+  },
+  list_item: {
+    marginVertical: 4,
+  },
+
+  bullet_list_icon: {
+    color: "#374151",
+    fontSize: 18,
+    lineHeight: 24,
+  },
+  bullet_list_content: {
+    flex: 1,
+    color: "#374151",
+    fontSize: 16,
+    lineHeight: 24,
+    paddingLeft: 6,
+  },
+
+  strong: {
+    fontWeight: "500",
+    color: "#374151",
   },
 });

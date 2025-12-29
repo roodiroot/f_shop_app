@@ -27,7 +27,7 @@ const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
   return (
     <TouchableOpacity
       className={cn(
-        "flex-row justify-center rounded-lg bg-neutral-800 shadow-sm w-full",
+        "flex-row justify-center rounded-xl bg-neutral-800 shadow-sm w-full",
         variantClasses[variant].container,
         props.disabled && "bg-neutral-400",
         className

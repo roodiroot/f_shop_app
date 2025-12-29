@@ -12,6 +12,7 @@ export const useRootCategories = () => {
           documentId: null,
         },
       },
+      categorySort: ["categoryId:asc"],
       productSort: ["createdAt:desc"],
     },
     fetchPolicy: "no-cache",

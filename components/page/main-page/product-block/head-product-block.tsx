@@ -11,7 +11,7 @@ export default function HeadProductBlock({
   funcButton = () => router.push("/(tabs)/catalog/category"),
 }: Props) {
   return (
-    <View className="flex-row justify-between items-center">
+    <View className="flex-row justify-between items-center text-gray-50">
       <Text className="text-2xl text-gray-900 font-bold tracking-tight">
         {title}
       </Text>

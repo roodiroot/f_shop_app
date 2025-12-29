@@ -33,7 +33,7 @@ export function ProductItem({
     <Pressable
       style={{ width }}
       onPress={() => router.push(`/(tabs)/catalog/product/${slug}`)}
-      className="relative bg-gray-200 h-80 rounded-2xl overflow-hidden"
+      className="aspect-[1/1.4] relative bg-gray-200 rounded-2xl overflow-hidden mb-2"
     >
       <LinearGradient
         colors={["#0B0B0B00", "#04040400", "#00000091"]}
