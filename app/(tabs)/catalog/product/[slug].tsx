@@ -1,3 +1,4 @@
+import { markdownStyles } from "@/assets/markdown/style";
 import Header from "@/components/layout/header";
 import ReturnError from "@/components/layout/return-error";
 import ProductBody from "@/components/page/pdp/product-body";
@@ -5,7 +6,7 @@ import WrapperList from "@/components/ui/wrapper-list";
 import { useProductBySlug } from "@/hooks/query/use-product-by-slug";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
-import { RefreshControl, StyleSheet, View } from "react-native";
+import { RefreshControl, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 
 const fish = `
@@ -62,7 +63,7 @@ export default function ProductPage() {
     >
       <ProductBody product={product} />
       <View className="mt-10">
-        <Markdown style={mdStyles}>
+        <Markdown style={markdownStyles}>
           {/* {product?.description?.replace(/<br\s*\/?>/gi, "\n")}
            */}
           {fish}
@@ -71,64 +72,3 @@ export default function ProductPage() {
     </WrapperList>
   );
 }
-
-const mdStyles = StyleSheet.create({
-  body: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
-
-  paragraph: {
-    marginTop: 0,
-    marginBottom: 18,
-    color: "#0F172A",
-    fontSize: 16,
-    lineHeight: 24,
-  },
-
-  heading2: {
-    fontSize: 16,
-    lineHeight: 20,
-    fontWeight: "500",
-    color: "#374151",
-    marginTop: 10,
-    marginBottom: 10,
-    letterSpacing: 0.2,
-  },
-  heading3: {
-    fontSize: 16,
-    lineHeight: 20,
-    fontWeight: "500",
-    color: "#374151",
-    marginTop: 10,
-    marginBottom: 10,
-    letterSpacing: 0.2,
-  },
-
-  bullet_list: {
-    marginTop: 0,
-    marginBottom: 18,
-    paddingLeft: 4,
-  },
-  list_item: {
-    marginVertical: 4,
-  },
-
-  bullet_list_icon: {
-    color: "#374151",
-    fontSize: 18,
-    lineHeight: 24,
-  },
-  bullet_list_content: {
-    flex: 1,
-    color: "#374151",
-    fontSize: 16,
-    lineHeight: 24,
-    paddingLeft: 6,
-  },
-
-  strong: {
-    fontWeight: "500",
-    color: "#374151",
-  },
-});

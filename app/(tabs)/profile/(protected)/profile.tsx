@@ -19,7 +19,7 @@ const profileMenu: ProfileMenuType = [
     icon: "orderHistory",
     link: "/(tabs)/profile/(protected)/order-history",
   },
-  { title: "Гайд по размерам", icon: "dress" },
+  { title: "Гайд по размерам", icon: "dress", link: "/(static)/gide-size" },
   { title: "О магазине", icon: "about" },
   { title: "Доставка и оплата", icon: "delivery" },
   { title: "Контакты", icon: "contacts" },

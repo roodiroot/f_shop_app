@@ -34,16 +34,16 @@ export default function ProductBlockSection({
               .fill("")
               .map((_, index) => <Sceleton key={index} width={ITEM_WIDTH} />)
           : products?.map((i) => (
-              <ProductItem
-                key={i.documentId}
-                width={ITEM_WIDTH}
-                slug={i.slug}
-                title={i.shortName}
-                sale={i.sale}
-                hit={i.hit}
-                product_variants={i.product_variants}
-                image={i.product_variants?.[0].images?.[0]}
-              />
+              <View key={i.documentId} style={{ width: ITEM_WIDTH }}>
+                <ProductItem
+                  slug={i.slug}
+                  title={i.shortName}
+                  sale={i.sale}
+                  hit={i.hit}
+                  product_variants={i.product_variants}
+                  image={i.product_variants?.[0].images?.[0]}
+                />
+              </View>
             ))}
       </View>
     </View>

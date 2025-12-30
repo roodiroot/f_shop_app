@@ -55,7 +55,7 @@ export default function InputPhone({
   return (
     <View className="w-full">
       <View
-        className={`w-full flex-row items-center rounded-lg border px-4 ${
+        className={`w-full flex-row items-center rounded-xl border px-4 ${
           errorText ? "border-red-500" : "border-gray-300"
         }`}
       >

@@ -8,7 +8,6 @@ import { router } from "expo-router";
 import { Image, Pressable, Text, View } from "react-native";
 
 type Props = {
-  width: number;
   slug: string;
   title: string;
   hit?: boolean;
@@ -18,7 +17,6 @@ type Props = {
 };
 
 export function ProductItem({
-  width,
   slug,
   title,
   hit,
@@ -31,9 +29,8 @@ export function ProductItem({
 
   return (
     <Pressable
-      style={{ width }}
       onPress={() => router.push(`/(tabs)/catalog/product/${slug}`)}
-      className="aspect-[1/1.4] relative bg-gray-200 rounded-2xl overflow-hidden mb-2"
+      className="w-full aspect-[1/1.4] relative bg-gray-200 rounded-2xl overflow-hidden mb-2"
     >
       <LinearGradient
         colors={["#0B0B0B00", "#04040400", "#00000091"]}

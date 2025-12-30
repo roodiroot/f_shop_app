@@ -1,6 +1,18 @@
 import Svg, { G, Path } from "react-native-svg";
 
 export const icons = {
+  x: ({ ...props }) => (
+    <Svg {...props} width="26" height="26" viewBox="0 0 24 24">
+      <Path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+        d="m18 6l-6 6m0 0l-6 6m6-6l6 6m-6-6L6 6"
+      />
+    </Svg>
+  ),
   dress: ({ ...props }) => (
     <Svg width="24" height="24" viewBox="0 0 24 24" {...props}>
       <G

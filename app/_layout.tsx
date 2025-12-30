@@ -36,10 +36,17 @@ export default function RootLayout() {
             />
 
             <Stack.Screen
-              name="checkout"
+              name="(static)/gide-size"
               options={{
-                title: "Checkout",
+                title: "Гайд по размерам",
               }}
+            />
+
+            <Stack.Screen
+              options={{
+                headerShown: false,
+              }}
+              name="search"
             />
           </Stack>
         </ApolloWrapper>

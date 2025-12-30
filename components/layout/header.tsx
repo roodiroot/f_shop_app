@@ -30,7 +30,7 @@ export default function Header({ title, headerOptions }: HeaderProps) {
     if (headerOptions?.rightButtonFunc) {
       return headerOptions.rightButtonFunc();
     }
-    return router.push("/(tabs)/catalog/search");
+    return router.push("/search");
   };
   return (
     <View
