@@ -39,7 +39,7 @@ export default function Header({ title, headerOptions }: HeaderProps) {
     >
       <Pressable
         onPress={leftButtonFunction}
-        className="size-14 bg-white border-gray-200 border-2 rounded-full justify-center items-center"
+        className="size-14 bg-white border-gray-200 border rounded-full justify-center items-center"
       >
         <CastomIcon
           name={
@@ -59,7 +59,7 @@ export default function Header({ title, headerOptions }: HeaderProps) {
 
       <Pressable
         onPress={rightButtonFunction}
-        className="size-14 bg-white border-gray-200 border-2 rounded-full justify-center items-center"
+        className="size-14 bg-white border-gray-200 border rounded-full justify-center items-center"
       >
         <CastomIcon
           name={

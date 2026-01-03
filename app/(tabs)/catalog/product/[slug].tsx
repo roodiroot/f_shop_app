@@ -63,11 +63,7 @@ export default function ProductPage() {
     >
       <ProductBody product={product} />
       <View className="mt-10">
-        <Markdown style={markdownStyles}>
-          {/* {product?.description?.replace(/<br\s*\/?>/gi, "\n")}
-           */}
-          {fish}
-        </Markdown>
+        <Markdown style={markdownStyles}>{fish}</Markdown>
       </View>
     </WrapperList>
   );

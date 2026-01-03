@@ -10,7 +10,7 @@ import InputGroup from "../ui/input/input-group";
 import InputPasswordGroup from "../ui/input/input-password-group";
 
 const RegisterForm = () => {
-  const { mutate, error } = useRegister();
+  const { mutate, error, isError, isPending } = useRegister();
   const { control, handleSubmit } = useForm<
     z.infer<typeof registrationFormSchema>
   >({
@@ -25,7 +25,6 @@ const RegisterForm = () => {
   });
 
   const onSubmit = (data: z.infer<typeof registrationFormSchema>) => {
-    console.log(data);
     mutate({
       username: data.username,
       email: data.email,
@@ -107,13 +106,18 @@ const RegisterForm = () => {
         />
 
         <View className="relative">
-          <Button onPress={handleSubmit(onSubmit)}>Зарегестрироваться</Button>
-          {error ? (
+          <Button disabled={isPending} onPress={handleSubmit(onSubmit)}>
+            Зарегестрироваться
+          </Button>
+          {isError ? (
             <View className="absolute -bottom-5 left-0 ">
-              <Text className="text-sm text-red-500">{error?.message}!</Text>
+              <Text className="text-sm text-red-500">
+                {(error as Error).message}
+              </Text>
             </View>
           ) : null}
         </View>
+        <Text>Подтвердите электронную почту, чтобы войти в аккаунт.</Text>
       </View>
 
       <View className="mt-10 flex-row gap-1 justify-center">

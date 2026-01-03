@@ -7,6 +7,7 @@ import Header from "@/components/layout/header";
 import QueryProvider from "@/providers/query-client-provider";
 
 import { AuthProvider } from "@/auth/auth-context";
+import { Toast } from "@/components/ui/toast";
 import "./global.css";
 
 export default function RootLayout() {
@@ -49,6 +50,7 @@ export default function RootLayout() {
               name="search"
             />
           </Stack>
+          <Toast />
         </ApolloWrapper>
       </QueryProvider>
     </AuthProvider>

@@ -58,7 +58,7 @@ export default function SearchPage() {
 
   return (
     <View style={{ paddingTop: insets.top }}>
-      <View className="flex-row gap-4 items-center px-4 pb-2">
+      <View className="flex-row gap-4 items-center px-4 pb-4">
         <Pressable onPress={() => router.back()}>
           <CastomIcon name="arrowBack" />
         </Pressable>
@@ -95,7 +95,7 @@ export default function SearchPage() {
           </View>
         )}
         showsVerticalScrollIndicator={false}
-        contentContainerClassName="pb-[150]"
+        contentContainerClassName="pb-[50]"
       />
     </View>
   );

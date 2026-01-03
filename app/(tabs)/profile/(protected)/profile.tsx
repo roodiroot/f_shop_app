@@ -39,9 +39,9 @@ export default function ProfilePage() {
           <Text className="text-gray-900 font-bold text-2xl">
             {auth.user?.username}
           </Text>
-          <Text className="font-medium text-lg">{auth.user?.email}</Text>
+          <Text className="text-lg">{auth.user?.email}</Text>
         </View>
-        <View className="pt-6 gap-3 flex-1">
+        <View className="pt-6 gap-2 flex-1">
           {profileMenu.map((i) => (
             <ItemMenuLink
               key={i.title}

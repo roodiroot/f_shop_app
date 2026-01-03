@@ -47,7 +47,6 @@ export default function Home() {
 
   const {
     productsList,
-    pageInfo,
     loading: loadingProducts,
     error: errorProducts,
     refetch: refetchProducts,
@@ -55,7 +54,6 @@ export default function Home() {
 
   const {
     productsList: newProductsList,
-    pageInfo: newPageInfo,
     loading: newLoadingProducts,
     error: newErrorProducts,
     refetch: newRefetchProducts,
@@ -95,6 +93,7 @@ export default function Home() {
   const onRefresh = async () => {
     setRefreshing(true);
     await refetchProducts({ ...prodFilterArg });
+    await newRefetchProducts({ ...newProdFilterArg });
     await refetchCategoies();
     setRefreshing(false);
   };

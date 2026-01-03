@@ -28,7 +28,7 @@ export default function CatalogSection({ categories, loading, error }: Props) {
   return (
     <View className="mt-6">
       <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-        <View className="gap-3 flex-row px-4">
+        <View className="gap-3 flex-row px-4 pb-2">
           {categories?.map((i) => (
             <CatalogSectionItem
               key={i.documentId}

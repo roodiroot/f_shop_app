@@ -14,12 +14,6 @@ export default function Checked({ onCheckedChange, checked, ...props }: Props) {
 
   const isChecked = isControlled ? checked : inner;
 
-  // const toggle = () => {
-  //   const next = !isChecked;
-  //   if (!isControlled) setInner(next);
-  //   onCheckedChange?.(next);
-  // };
-
   return (
     <View
       {...props}

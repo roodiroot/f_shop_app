@@ -49,7 +49,7 @@ export default function ImageSlider({ currentVariant }: ImageSliderProps) {
           width={WIDTH}
           loop
           data={images}
-          onProgressChange={(absoluteProgress) => {
+          onProgressChange={(_, absoluteProgress) => {
             progress.value = absoluteProgress;
           }}
           renderItem={({ item }) => (

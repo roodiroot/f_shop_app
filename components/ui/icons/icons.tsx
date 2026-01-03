@@ -270,13 +270,14 @@ export const icons = {
     </Svg>
   ),
   check: ({ ...props }) => (
-    <Svg fill="none" viewBox="0 0 14 14" {...props}>
+    <Svg viewBox="0 0 14 14" fill="none" {...props}>
       <Path
         d="M3 8L6 11L11 3.5"
-        strokeWidth={2}
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-      />
+        stroke={"#FFF"}
+      ></Path>
     </Svg>
   ),
   arrowBack: ({ ...props }) => (
