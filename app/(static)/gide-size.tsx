@@ -1,6 +1,8 @@
 import { markdownStyles } from "@/assets/markdown/style";
 import WrapperList from "@/components/ui/wrapper-list";
+import { View } from "react-native";
 import Markdown from "react-native-markdown-display";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const text = `
 # Гайд по размерам
@@ -91,9 +93,13 @@ const text = `
 `;
 
 export default function GideSize() {
+  const insets = useSafeAreaInsets();
+
   return (
-    <WrapperList className="pt-4 pb-10">
-      <Markdown style={markdownStyles}>{text}</Markdown>
+    <WrapperList className="pt-4">
+      <View style={{ paddingBottom: insets.bottom }} className="pt-4">
+        <Markdown style={{ ...markdownStyles }}>{text}</Markdown>
+      </View>
     </WrapperList>
   );
 }

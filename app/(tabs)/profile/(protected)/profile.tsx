@@ -20,12 +20,16 @@ const profileMenu: ProfileMenuType = [
     link: "/(tabs)/profile/(protected)/order-history",
   },
   { title: "Гайд по размерам", icon: "dress", link: "/(static)/gide-size" },
-  { title: "О магазине", icon: "about" },
-  { title: "Доставка и оплата", icon: "delivery" },
-  { title: "Контакты", icon: "contacts" },
-  { title: "Поддержка", icon: "support" },
-  { title: "Политика конфиденциальности", icon: "policy" },
-  { title: "Публичная оферта", icon: "policy" },
+  { title: "О магазине", icon: "about", link: "/(static)/contacts" },
+  { title: "Доставка и оплата", icon: "delivery", link: "/(static)/contacts" },
+  { title: "Контакты", icon: "contacts", link: "/(static)/contacts" },
+  { title: "Поддержка", icon: "support", link: "/(static)/contacts" },
+  {
+    title: "Политика конфиденциальности",
+    icon: "policy",
+    link: "/(static)/contacts",
+  },
+  { title: "Публичная оферта", icon: "policy", link: "/(static)/contacts" },
 ];
 
 export default function ProfilePage() {

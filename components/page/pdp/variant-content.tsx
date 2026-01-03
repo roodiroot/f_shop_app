@@ -2,6 +2,7 @@ import { useCart } from "@/hooks/use-cart";
 import { useFavorite } from "@/hooks/use-favorites";
 import { useProductVariantPicker } from "@/hooks/useProductVariantPicker";
 import { Product } from "@/types/products";
+import { toast } from "@/utils/toast";
 import * as Haptics from "expo-haptics";
 import { View } from "react-native";
 import ActionsComponent from "./body-elements/actions-component";
@@ -56,6 +57,7 @@ export default function VariantContent({
   const addProductToFavorite = () => {
     addToFavotite(product.documentId);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    toast.info("Товар добавлен в избранное");
   };
 
   const removeFavorite = () => {
@@ -66,6 +68,7 @@ export default function VariantContent({
     addToCart(cartProduct);
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     // Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+    toast.info("Товар добавлен в корзину");
   };
 
   const curentItemCart = items

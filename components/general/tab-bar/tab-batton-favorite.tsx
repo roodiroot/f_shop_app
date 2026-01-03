@@ -1,7 +1,6 @@
 import CastomIcon from "@/components/ui/icons/castom-icon";
 import { useFavorite } from "@/hooks/use-favorites";
 import { shadowSoft } from "@/theme/colors";
-import cn from "clsx";
 import { TabTriggerSlotProps } from "expo-router/ui";
 import React from "react";
 import { Pressable, Text, View } from "react-native";
@@ -23,8 +22,12 @@ export const TabButtonFavorite = React.forwardRef<View, TabTriggerSlotProps>(
             </View>
           ) : null}
           <View
-            style={{ borderRadius: 16 }}
-            className={cn("p-4", isFocused && "bg-white")}
+            style={{
+              borderRadius: 16,
+              overflow: "hidden",
+              padding: 16,
+              backgroundColor: isFocused ? "#ffffff" : "#ffffff00",
+            }}
           >
             <CastomIcon name="heart" color="#111827" />
           </View>
