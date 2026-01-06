@@ -9,7 +9,7 @@ export const TabButtonCart = React.forwardRef<View, TabTriggerSlotProps>(
   ({ isFocused, ...props }, ref) => {
     const { items } = useCart();
     return (
-      <Pressable className="flex-1 py-2" ref={ref} {...props}>
+      <Pressable className="flex-1  py-2" ref={ref} {...props}>
         <View className={"flex-1 shrink items-center justify-center relative"}>
           {items.length ? (
             <View
@@ -25,7 +25,7 @@ export const TabButtonCart = React.forwardRef<View, TabTriggerSlotProps>(
             style={{
               borderRadius: 16,
               overflow: "hidden",
-              padding: 16,
+              padding: 10,
               backgroundColor: isFocused ? "#ffffff" : "#ffffff00",
             }}
           >

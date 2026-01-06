@@ -15,15 +15,18 @@ export type CategoryScreen = CategoryBase & {
   icon: Pick<ProductImageFormats, "url">;
 };
 
+export type ChildrenCategory = {
+  slug: string;
+  name: string;
+  documentId: string;
+  icon: Pick<ProductImageFormats, "url">;
+  // image: ProductImage;
+  products: [] | ShortProductType[];
+};
+
 export type CategoryRootType = CategoryBase & {
   products: ShortProductType[] | [];
-  children: {
-    slug: string;
-    name: string;
-    documentId: string;
-    icon: Pick<ProductImageFormats, "url">;
-    products: ShortProductType[] | [];
-  }[];
+  children: ChildrenCategory[];
 };
 
 export type TypeShort = {

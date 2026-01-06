@@ -15,7 +15,7 @@ export const TabButton = React.forwardRef<
           style={{
             borderRadius: 16,
             overflow: "hidden",
-            padding: 16,
+            padding: 10,
             backgroundColor: isFocused ? "#ffffff" : "#ffffff00",
           }}
         >
