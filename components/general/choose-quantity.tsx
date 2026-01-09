@@ -61,7 +61,6 @@ export default function ChooseQuantity({
   const handleInputChange = (text: string) => {
     const raw = text.replace(/\D/g, "");
     if (raw === "") {
-      // даём пустое поле во время ввода, но значение не роняем
       setValue(min);
       onChangeQuantity?.(min);
       return;
@@ -70,16 +69,14 @@ export default function ChooseQuantity({
   };
 
   return (
-    <View style={[styles.wrapper, style]}>
+    <View style={{ ...styles.wrapper, ...style }}>
       <View style={styles.container}>
         <Pressable
           onPress={handleDecrement}
           disabled={decDisabled}
-          className="pl-2"
-          style={({ pressed }) => [
+          style={[
             styles.button,
             styles.leftButton,
-            pressed && !decDisabled && styles.pressed,
             decDisabled && styles.disabled,
           ]}
           hitSlop={8}
@@ -99,13 +96,11 @@ export default function ChooseQuantity({
         <Pressable
           onPress={handleIncrement}
           disabled={incDisabled}
-          style={({ pressed }) => [
+          style={[
             styles.button,
             styles.rightButton,
-            pressed && !incDisabled && styles.pressed,
             incDisabled && styles.disabled,
           ]}
-          className="pr-2"
           hitSlop={8}
         >
           <Feather name="plus" size={14} />
@@ -128,11 +123,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   button: {
-    height: 32,
-    width: 38,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "red",
+    paddingHorizontal: 8,
   },
   leftButton: {
     borderRightWidth: 1,
@@ -146,12 +139,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#f3f4f6",
   },
   disabled: {
-    opacity: 0.45,
+    opacity: 0.25,
   },
   input: {
-    height: 32,
-    minWidth: 44,
-    paddingHorizontal: 10,
+    height: 36,
+    minWidth: 40,
     fontSize: 14,
+    lineHeight: 16,
   },
 });

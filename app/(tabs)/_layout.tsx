@@ -10,7 +10,6 @@ export default function TabsLayout() {
 
   const extraIOS =
     Platform.OS === "ios" ? Math.min(insets.bottom, 10) : insets.bottom;
-  console.log(insets.bottom);
   return (
     <Tabs>
       <TabSlot />

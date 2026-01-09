@@ -36,7 +36,7 @@ export function TextArea({
             flex: 1,
             fontSize: 16,
             height: 42,
-            textAlignVertical: "center",
+            textAlignVertical: "top",
             paddingVertical: 4,
             minHeight: 120,
           }}

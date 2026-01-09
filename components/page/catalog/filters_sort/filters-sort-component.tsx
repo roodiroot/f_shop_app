@@ -68,7 +68,7 @@ export default function FilterSortComponnt({
               })
             }
           >
-            <CastomIcon size={24} name="filter" />
+            <CastomIcon size={25} name="filter" />
           </Pressable>
         ) : null}
       </View>

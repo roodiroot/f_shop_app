@@ -58,7 +58,7 @@ const OrderCreateForm = () => {
   };
 
   return (
-    <View className="pb-20">
+    <View className="pb-10">
       <View className="gap-6">
         <Controller
           control={control}

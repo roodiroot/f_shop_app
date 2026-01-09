@@ -9,12 +9,12 @@ type Props = {
 
 export default function FuterOrder({ statusOrder, updatedAt }: Props) {
   return (
-    <View className="mt-6 p-4 border-t border-gray-200 flex-row justify-between">
+    <View className="mt-6 p-4 border-t border-gray-200 flex-row justify-between overflow-hidden">
       <StatusOrder statusOrder={statusOrder} />
-      <Text>
+      <Text className="text-sm font-medium">
         {new Date(updatedAt || 0).toLocaleString("ru-RU", {
           day: "numeric",
-          month: "long",
+          month: "numeric",
           year: "numeric",
           hour: "numeric",
           minute: "numeric",

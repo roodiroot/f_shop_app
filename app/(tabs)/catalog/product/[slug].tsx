@@ -6,7 +6,7 @@ import WrapperList from "@/components/ui/wrapper-list";
 import { useProductBySlug } from "@/hooks/query/use-product-by-slug";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
-import { RefreshControl, View } from "react-native";
+import { RefreshControl, Share, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 
 const fish = `
@@ -28,6 +28,12 @@ export default function ProductPage() {
   const { slug } = useLocalSearchParams<{ slug: string }>();
   const [refreshing, setRefreshing] = useState(false);
   const { product, loading, error, refetch } = useProductBySlug({ slug });
+
+  const shareLink = async () => {
+    await Share.share({
+      url: `https://moroz.matryoshka-studio.ru/product/${slug}`,
+    });
+  };
 
   const onRefresh = async () => {
     setRefreshing(true);
@@ -60,6 +66,10 @@ export default function ProductPage() {
       }
       headerSown
       headerTitle={product?.shortName}
+      headerOptions={{
+        rightButtonIcon: "link",
+        rightButtonFunc: shareLink,
+      }}
     >
       <ProductBody product={product} />
       <View className="mt-10">
